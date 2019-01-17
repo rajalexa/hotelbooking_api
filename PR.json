@@ -9,8 +9,49 @@
 			"name": "Level 1. Create new booking and view detail",
 			"item": [
 				{
-					"name": "GIVEN User has generate date",
+					"name": "GIVEN User prepare data",
 					"item": [
+						{
+							"name": "random_user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "7fe88789-b037-4eab-a167-39d35d8ec2e4",
+										"exec": [
+											"var jsonData = pm.response.json();",
+											"",
+											"pm.environment.set(\"my_booking_firstname\", jsonData.results[0].name.first);",
+											"pm.environment.set(\"my_booking_lastname\", jsonData.results[0].name.last);",
+											"pm.environment.set(\"my_booking_price\", _.random(10000, 100000));",
+											"pm.environment.set(\"my_booking_needs\", _.sample([\"Roro Fitria\", \"Vanessa Angel\", \"Nickyta Mirzani\"]));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://randomuser.me/api/",
+									"protocol": "https",
+									"host": [
+										"randomuser",
+										"me"
+									],
+									"path": [
+										"api",
+										""
+									]
+								}
+							},
+							"response": []
+						},
 						{
 							"name": "200 -  Get Token",
 							"event": [
@@ -41,6 +82,16 @@
 										],
 										"type": "text/javascript"
 									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "128e779d-9d67-435d-b9de-dbf8a698ad73",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
 								}
 							],
 							"request": {
@@ -48,7 +99,8 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"value": "application/json"
+										"value": "application/json",
+										"type": "text"
 									}
 								],
 								"body": {
@@ -56,9 +108,12 @@
 									"raw": "{\n    \"username\" : \"admin\",\n    \"password\" : \"password123\"\n}"
 								},
 								"url": {
-									"raw": "{{url}}/auth",
+									"raw": "https://restful-booker.herokuapp.com/auth",
+									"protocol": "https",
 									"host": [
-										"{{url}}"
+										"restful-booker",
+										"herokuapp",
+										"com"
 									],
 									"path": [
 										"auth"
@@ -112,12 +167,15 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"firstname\" : \"Alexander\",\n    \"lastname\" : \"Jackhariyas\",\n    \"totalprice\" : 111,\n    \"depositpaid\" : true,\n    \"bookingdates\" : {\n        \"checkin\" : \"{{my_booking_checkin}}\",\n        \"checkout\" : \"{{my_booking_checkout}}\"\n    },\n    \"additionalneeds\" : \"Vannesa Angel\"\n}"
+									"raw": "{\n    \"firstname\" : \"{{my_booking_firstname}}\",\n    \"lastname\" : \"{{my_booking_lastname}}\",\n    \"totalprice\" : \"{{my_booking_price}}\",\n    \"depositpaid\" : true,\n    \"bookingdates\" : {\n        \"checkin\" : \"{{my_booking_checkin}}\",\n        \"checkout\" : \"{{my_booking_checkout}}\"\n    },\n    \"additionalneeds\" : \"{{my_booking_needs}}\"\n}"
 								},
 								"url": {
-									"raw": "{{url}}/booking",
+									"raw": "https://restful-booker.herokuapp.com/booking",
+									"protocol": "https",
 									"host": [
-										"{{url}}"
+										"restful-booker",
+										"herokuapp",
+										"com"
 									],
 									"path": [
 										"booking"
@@ -174,9 +232,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{url}}/booking?firstname={{my_booking_firstname}}&lastname={{my_booking_lastname}}",
+									"raw": "https://restful-booker.herokuapp.com/booking?firstname={{my_booking_firstname}}&lastname={{my_booking_lastname}}",
+									"protocol": "https",
 									"host": [
-										"{{url}}"
+										"restful-booker",
+										"herokuapp",
+										"com"
 									],
 									"path": [
 										"booking"
@@ -252,9 +313,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{url}}/booking/{{my_booking_id}}",
+									"raw": "https://restful-booker.herokuapp.com/booking/{{my_booking_id}}",
+									"protocol": "https",
 									"host": [
-										"{{url}}"
+										"restful-booker",
+										"herokuapp",
+										"com"
 									],
 									"path": [
 										"booking",
@@ -317,9 +381,12 @@
 									"raw": "{\n    \"username\" : \"admin\",\n    \"password\" : \"password123\"\n}"
 								},
 								"url": {
-									"raw": "{{url}}/auth",
+									"raw": "https://restful-booker.herokuapp.com/auth",
+									"protocol": "https",
 									"host": [
-										"{{url}}"
+										"restful-booker",
+										"herokuapp",
+										"com"
 									],
 									"path": [
 										"auth"
@@ -352,6 +419,16 @@
 											"pm.environment.set(\"my_booking_lastname\", jsonData.lastname);",
 											"pm.environment.set(\"my_booking_checkin\", jsonData.bookingdates.checkin);",
 											"pm.environment.set(\"my_booking_checkout\", jsonData.bookingdates.checkout);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "0cfa903a-9358-46a1-850d-2c1c7dbdbb21",
+										"exec": [
+											"pm.globals.set(\"random_name\", \"Saya ganteng ke-\" + _.random(100, 1000));"
 										],
 										"type": "text/javascript"
 									}
@@ -398,7 +475,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"firstname\" : \"Rhoma\",\n    \"lastname\" : \"Irama\",\n    \"totalprice\" : 111,\n    \"depositpaid\" : true,\n    \"bookingdates\" : {\n        \"checkin\" : \"2018-01-01\",\n        \"checkout\" : \"2019-01-01\"\n    },\n    \"additionalneeds\" : \"Breakfast\"\n}"
+									"raw": "{\n    \"firstname\" : \"{{random_name}}\",\n    \"lastname\" : \"Irama\",\n    \"totalprice\" : 111,\n    \"depositpaid\" : true,\n    \"bookingdates\" : {\n        \"checkin\" : \"2018-01-01\",\n        \"checkout\" : \"2019-01-01\"\n    },\n    \"additionalneeds\" : \"Breakfast\"\n}"
 								},
 								"url": {
 									"raw": "https://restful-booker.herokuapp.com/booking/{{my_booking_id}}",
@@ -465,9 +542,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{url}}/booking?firstname={{my_booking_firstname}}&lastname={{my_booking_lastname}}",
+									"raw": "https://restful-booker.herokuapp.com/booking?firstname=\"{{my_booking_firstname}}\"&lastname=\"{{my_booking_lastname}}\"",
+									"protocol": "https",
 									"host": [
-										"{{url}}"
+										"restful-booker",
+										"herokuapp",
+										"com"
 									],
 									"path": [
 										"booking"
@@ -475,11 +555,11 @@
 									"query": [
 										{
 											"key": "firstname",
-											"value": "{{my_booking_firstname}}"
+											"value": "\"{{my_booking_firstname}}\""
 										},
 										{
 											"key": "lastname",
-											"value": "{{my_booking_lastname}}"
+											"value": "\"{{my_booking_lastname}}\""
 										}
 									]
 								}
@@ -541,9 +621,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{url}}/booking/{{my_booking_id}}",
+									"raw": "https://restful-booker.herokuapp.com/booking/{{my_booking_id}}",
+									"protocol": "https",
 									"host": [
-										"{{url}}"
+										"restful-booker",
+										"herokuapp",
+										"com"
 									],
 									"path": [
 										"booking",
