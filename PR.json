@@ -108,12 +108,9 @@
 									"raw": "{\n    \"username\" : \"admin\",\n    \"password\" : \"password123\"\n}"
 								},
 								"url": {
-									"raw": "https://restful-booker.herokuapp.com/auth",
-									"protocol": "https",
+									"raw": "{{url}}/auth",
 									"host": [
-										"restful-booker",
-										"herokuapp",
-										"com"
+										"{{url}}"
 									],
 									"path": [
 										"auth"
@@ -170,12 +167,9 @@
 									"raw": "{\n    \"firstname\" : \"{{my_booking_firstname}}\",\n    \"lastname\" : \"{{my_booking_lastname}}\",\n    \"totalprice\" : \"{{my_booking_price}}\",\n    \"depositpaid\" : true,\n    \"bookingdates\" : {\n        \"checkin\" : \"{{my_booking_checkin}}\",\n        \"checkout\" : \"{{my_booking_checkout}}\"\n    },\n    \"additionalneeds\" : \"{{my_booking_needs}}\"\n}"
 								},
 								"url": {
-									"raw": "https://restful-booker.herokuapp.com/booking",
-									"protocol": "https",
+									"raw": "{{url}}/booking",
 									"host": [
-										"restful-booker",
-										"herokuapp",
-										"com"
+										"{{url}}"
 									],
 									"path": [
 										"booking"
@@ -232,12 +226,9 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "https://restful-booker.herokuapp.com/booking?firstname={{my_booking_firstname}}&lastname={{my_booking_lastname}}",
-									"protocol": "https",
+									"raw": "{{url}}/booking?firstname={{my_booking_firstname}}&lastname={{my_booking_lastname}}",
 									"host": [
-										"restful-booker",
-										"herokuapp",
-										"com"
+										"{{url}}"
 									],
 									"path": [
 										"booking"
@@ -313,12 +304,9 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "https://restful-booker.herokuapp.com/booking/{{my_booking_id}}",
-									"protocol": "https",
+									"raw": "{{url}}/booking/{{my_booking_id}}",
 									"host": [
-										"restful-booker",
-										"herokuapp",
-										"com"
+										"{{url}}"
 									],
 									"path": [
 										"booking",
@@ -381,12 +369,9 @@
 									"raw": "{\n    \"username\" : \"admin\",\n    \"password\" : \"password123\"\n}"
 								},
 								"url": {
-									"raw": "https://restful-booker.herokuapp.com/auth",
-									"protocol": "https",
+									"raw": "{{url}}/auth",
 									"host": [
-										"restful-booker",
-										"herokuapp",
-										"com"
+										"{{url}}"
 									],
 									"path": [
 										"auth"
@@ -478,12 +463,9 @@
 									"raw": "{\n    \"firstname\" : \"{{random_name}}\",\n    \"lastname\" : \"Irama\",\n    \"totalprice\" : 111,\n    \"depositpaid\" : true,\n    \"bookingdates\" : {\n        \"checkin\" : \"2018-01-01\",\n        \"checkout\" : \"2019-01-01\"\n    },\n    \"additionalneeds\" : \"Breakfast\"\n}"
 								},
 								"url": {
-									"raw": "https://restful-booker.herokuapp.com/booking/{{my_booking_id}}",
-									"protocol": "https",
+									"raw": "{{url}}/booking/{{my_booking_id}}",
 									"host": [
-										"restful-booker",
-										"herokuapp",
-										"com"
+										"{{url}}"
 									],
 									"path": [
 										"booking",
@@ -542,12 +524,9 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "https://restful-booker.herokuapp.com/booking?firstname=\"{{my_booking_firstname}}\"&lastname=\"{{my_booking_lastname}}\"",
-									"protocol": "https",
+									"raw": "{{url}}/booking?firstname=\"{{my_booking_firstname}}\"&lastname=\"{{my_booking_lastname}}\"",
 									"host": [
-										"restful-booker",
-										"herokuapp",
-										"com"
+										"{{url}}"
 									],
 									"path": [
 										"booking"
@@ -621,12 +600,9 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "https://restful-booker.herokuapp.com/booking/{{my_booking_id}}",
-									"protocol": "https",
+									"raw": "{{url}}/booking/{{my_booking_id}}",
 									"host": [
-										"restful-booker",
-										"herokuapp",
-										"com"
+										"{{url}}"
 									],
 									"path": [
 										"booking",
